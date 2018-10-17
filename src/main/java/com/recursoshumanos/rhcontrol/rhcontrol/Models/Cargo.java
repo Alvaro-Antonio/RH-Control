@@ -5,6 +5,7 @@
  */
 package com.recursoshumanos.rhcontrol.rhcontrol.Models;
 
+import java.io.Serializable;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,7 +14,10 @@ import org.springframework.stereotype.Component;
 */
 
 @Component
-public class Cargo {
+public class Cargo implements Serializable{
+        
+        private final static long serialVersionUID = 1L;
+    
 	private String nomeCargo;
 	private double salarioCargo;
 	private double gratificacao;

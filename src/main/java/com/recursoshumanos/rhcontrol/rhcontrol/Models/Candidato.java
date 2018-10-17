@@ -5,10 +5,13 @@
  */
 package com.recursoshumanos.rhcontrol.rhcontrol.Models;
 
+import org.springframework.stereotype.Component;
+
 /**
  *
  * @author user
  */
+@Component
 public class Candidato extends Pessoa {
 	private boolean aprovacao;
 	private String avaliacaoGeral;	

@@ -10,6 +10,7 @@ package com.recursoshumanos.rhcontrol.rhcontrol.Models;
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.Cargo;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class GerenteCargo {
-
+        
 	private List<Cargo> todosCargos = new ArrayList<>();
 
 	public GerenteCargo() {
@@ -51,7 +52,7 @@ public class GerenteCargo {
 	}
 
 	public void updateCargo(Cargo cargo) {
-		for (Cargo c : todosCargos) {
+		for (Cargo c : this.todosCargos) {
 			if (c.getId() == cargo.getId()) {
 				c = cargo;
 			}

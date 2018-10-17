@@ -20,13 +20,14 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class GerenteFuncionario {
-	private List<Funcionario> todosFuncionarios;
-	
-	@Autowired
+        
+    private List<Funcionario> todosFuncionarios;
+    
+    @Autowired
     private GerenteCargo gerenteCargo;
 
 	public GerenteFuncionario(){
-		this.todosFuncionarios = new ArrayList<>();
+		todosFuncionarios = new ArrayList<>();
 	}
 	public void addFuncionario(Funcionario funcionario) {
 		todosFuncionarios.add(funcionario);
