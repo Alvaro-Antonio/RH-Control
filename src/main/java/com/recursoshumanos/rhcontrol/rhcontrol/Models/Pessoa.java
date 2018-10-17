@@ -5,8 +5,11 @@
  */
 package com.recursoshumanos.rhcontrol.rhcontrol.Models;
 
-public abstract class Pessoa {
+import java.io.Serializable;
 
+public abstract class Pessoa implements Serializable{
+        
+        private final static long serialVersionUID = 1L;
 	private int id;
 
 	private String nome;
