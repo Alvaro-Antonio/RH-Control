@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.recursoshumanos.rhcontrol.rhcontrol.configurations;
 
 /**
  *
- * @author user
+ * @author alvaro.antonio
  */
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
  
@@ -32,7 +26,7 @@ public class SwaggerConfig {
  
 		docket
 		.select()
-		.apis(RequestHandlerSelectors.basePackage("RecurosHumanos.ufpb.RecurosHumanos"))
+		.apis(RequestHandlerSelectors.basePackage("com.recursoshumanos.rhcontrol.rhcontrol"))
 		.paths(PathSelectors.any())
 		.build()
 		.apiInfo(this.informacoesApi().build());
@@ -44,7 +38,7 @@ public class SwaggerConfig {
  
 		ApiInfoBuilder apiInfoBuilder = new ApiInfoBuilder();
  
-		apiInfoBuilder.title("Api-Pessoa");
+		apiInfoBuilder.title("Api-RH-Control");
 		apiInfoBuilder.description("Api para realização de um CRUD.");
 		apiInfoBuilder.version("1.0");
 		apiInfoBuilder.termsOfServiceUrl("Termo de uso: Deve ser usada para estudos.");
@@ -61,3 +55,4 @@ public class SwaggerConfig {
 				"alvaro.antonio@dce.ufpb.br");
 	}
 }
+
