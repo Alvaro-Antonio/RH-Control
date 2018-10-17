@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.recursoshumanos.rhcontrol.rhcontrol.controllers;
+
 /**
  *
  * @author user
@@ -14,6 +15,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -29,17 +31,10 @@ import org.springframework.web.bind.annotation.RestController;
  
 @RestController
 public class CandidatoController {
+        
+        @Autowired
  	private List<Candidato> candidatos;
         
-	public CandidatoController() {
-	    this.candidatos = new ArrayList<Candidato>();
-		  
-	  
-	    Candidato c1 = new Candidato(3,"Fulano", 27, "92122156", "45414545", "(81)9239-2343", "", "1233", "fulano@mail.com", "nenhuma", "top");
-	    Candidato c2 = new Candidato(4,"Ciclano", 27, "92452156", "45414545", "(81)9239-2343", "", "1233", "fulano@mail.com", "nenhuma", "top");
-	    candidatos.add(c1);
-	    candidatos.add(c2);
-	  }
         @ApiOperation(
 			value="Cadastrar uma nova pessoa", 
 			response=Candidato.class, 
