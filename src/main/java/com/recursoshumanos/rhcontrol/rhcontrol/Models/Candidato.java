@@ -5,6 +5,7 @@
  */
 package com.recursoshumanos.rhcontrol.rhcontrol.Models;
 
+import javax.persistence.Entity;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
  * @author user
  */
 @Component
+@Entity
 public class Candidato extends Pessoa {
 	private boolean aprovacao;
 	private String avaliacaoGeral;	

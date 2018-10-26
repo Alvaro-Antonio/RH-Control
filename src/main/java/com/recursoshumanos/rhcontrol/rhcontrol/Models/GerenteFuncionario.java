@@ -41,7 +41,7 @@ public class GerenteFuncionario {
 		this.todosFuncionarios = todosFuncionarios;
 	}
 	
-	public Funcionario buscarFuncionario(int id)throws FuncionarioNaoExisteException{
+	public Funcionario buscarFuncionario(Integer id)throws FuncionarioNaoExisteException{
 		for( Funcionario c : todosFuncionarios) {
 			if(c.getId() == id){
                                 return c;

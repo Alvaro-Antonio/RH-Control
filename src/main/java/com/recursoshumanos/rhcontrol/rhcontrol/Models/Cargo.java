@@ -6,6 +6,10 @@
 package com.recursoshumanos.rhcontrol.rhcontrol.Models;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,17 +18,20 @@ import org.springframework.stereotype.Component;
 */
 
 @Component
+@Entity
 public class Cargo implements Serializable{
         
         private final static long serialVersionUID = 1L;
-    
+        @Id
+        @GeneratedValue(strategy=GenerationType.IDENTITY)
+        private Integer id;
 	private String nomeCargo;
 	private double salarioCargo;
 	private double gratificacao;
 	private double valorHoraExtra;
 	private double valeAlimentacao;
 	private double valeTransporte;
-        private int id;
+        
     
 	public Cargo(int id,String nomeCargo, double salarioCargo, double gratificacao, double valeAlimentacao,
 			double valeTransporte) {

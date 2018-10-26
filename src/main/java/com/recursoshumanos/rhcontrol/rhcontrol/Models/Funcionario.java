@@ -12,7 +12,9 @@ package com.recursoshumanos.rhcontrol.rhcontrol.Models;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
 
+@Entity
 public class Funcionario extends Pessoa {
 	private Cargo cargo;
 	//private List<Advertencia> advertencias= new ArrayList<Advertencia>();

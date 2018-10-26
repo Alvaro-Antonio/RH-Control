@@ -16,8 +16,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class Selecao {        
-    
-    private List<Candidato> candidatos = new ArrayList<Candidato>();     
+    @Autowired
+    private List<Candidato> candidatos;     
     private String tipoSelecao;
     
     //private LocalDateTime data;

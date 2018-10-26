@@ -119,11 +119,11 @@ public class CandidatoController {
 }
 
       
-	@RequestMapping(value = "/")
+	/*@RequestMapping(value = "/")
 	public String mostra() {
 		 
 	  return "<h1>Oiaaaa</h1>";
-	}
+	}*/
         public Candidato getCandidatoId(int id){
             
             for(Candidato k : candidatos){

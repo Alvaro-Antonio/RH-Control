@@ -51,8 +51,7 @@ public class FuncionarioController {
 
     })
     @RequestMapping(value = "/funcionario", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public @ResponseBody
-    ResponseEntity<String> salvar( ) {
+    public @ResponseBody ResponseEntity<String> salvar( ) {
 
         try {
             for (Candidato k : selecao.getCandidatos() ){
@@ -78,8 +77,7 @@ public class FuncionarioController {
     }
 
     @RequestMapping(value = "/funcionario/{id}/cargo/", method = RequestMethod.PUT)
-    public ResponseEntity updateCargo(@PathVariable Integer idFunc,
-            @RequestBody String cargo) {
+    public ResponseEntity updateCargo(@PathVariable Integer idFunc,@RequestBody String cargo) {
         try {
             //Funcionario func = gerenteFuncionario.buscarFuncionario(idFunc);
             /*
@@ -97,7 +95,7 @@ public class FuncionarioController {
         }
 
     }
-
+    
     public Cargo getCargoId(int id) {
 
         for (Cargo k : this.gerenteCargo.getTodosCargos()) {
