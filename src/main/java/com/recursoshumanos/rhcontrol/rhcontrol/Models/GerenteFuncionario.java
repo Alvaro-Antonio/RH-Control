@@ -57,11 +57,11 @@ public class GerenteFuncionario {
 		throw new FuncionarioNaoExisteException("Esse funcionário Não pode ser Encontrado");
 	}
 	
-	public void desligarFuncionario(String nome) throws FuncionarioNaoExisteException{
+	/*public void desligarFuncionario(String nome) throws FuncionarioNaoExisteException{
 		for(Funcionario k : todosFuncionarios) {
 			if(k.getNome().equals(nome)) todosFuncionarios.remove(k);
 		}
 		throw new FuncionarioNaoExisteException("Esse funcionário Não pode ser Encontrado");
-	}
+	}*/
 	
 }

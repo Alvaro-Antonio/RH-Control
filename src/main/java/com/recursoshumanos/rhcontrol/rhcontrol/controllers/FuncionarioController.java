@@ -33,9 +33,6 @@ public class FuncionarioController {
     @Autowired
     private GerenteCargo gerenteCargo;
     
-    @Autowired
-    private Selecao selecao;
-
     public FuncionarioController() {
         Candidato cand1 = new Candidato();
         //Funcionario f1 = new Funcionario(c1, "31/03/2011", );
@@ -50,7 +47,7 @@ public class FuncionarioController {
 			@ApiResponse(code = 201, message = "Cargo foi criado", response = Cargo.class)
 
     })
-    @RequestMapping(value = "/funcionario", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    /*@RequestMapping(value = "/funcionario", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public @ResponseBody ResponseEntity<String> salvar( ) {
 
         try {
@@ -64,7 +61,7 @@ public class FuncionarioController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+*/
     @RequestMapping(value = "/funcionario/{id}", method = RequestMethod.GET)
     public ResponseEntity<Cargo> buscar(@PathVariable("id") Integer id) {
         Cargo carg = getCargoId(id);

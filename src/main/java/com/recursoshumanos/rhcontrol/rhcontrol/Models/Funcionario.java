@@ -13,17 +13,20 @@ package com.recursoshumanos.rhcontrol.rhcontrol.Models;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
-public class Funcionario extends Pessoa {
+public class Funcionario  {
+    
 	private Cargo cargo;
 	//private List<Advertencia> advertencias= new ArrayList<Advertencia>();
 	private String dataDaAdmicao;
 	private int quantAdvertencia;
 	private int quantHorasExtrasMensal;
+        @Id
+        private Integer id;
 
 	public Funcionario(Cargo cargo, String dataDaAdmicao,Candidato candidato) {
-		super(candidato.getId(),candidato.getNome(), candidato.getIdade(), candidato.getNumeroRG(), candidato.getNumeroCPF(),candidato.getTelefone(),candidato.getEndereco(),candidato.getDataDeNasc(),candidato.getEmail(),candidato.getHabilidades());
 		this.cargo = cargo;
 		this.dataDaAdmicao = dataDaAdmicao;
 	}
@@ -83,6 +86,14 @@ public class Funcionario extends Pessoa {
 	//public void setAdvertencias(List<Advertencia> advertencias) {
 	//	this.advertencias = advertencias;
 	//}
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 	
 	
 }

@@ -25,11 +25,11 @@ public class SelecaoController {
     @Autowired
     private Selecao selecao;
     
-    @RequestMapping(value="/selecao",method = RequestMethod.GET)
+    /*@RequestMapping(value="/selecao",method = RequestMethod.GET)
     public ResponseEntity<List<Candidato>> listar(){
         ArrayList<Candidato> Candidato;
         
         return new ResponseEntity<List<Candidato>>(new ArrayList<Candidato>(selecao.getCandidatos()), HttpStatus.OK);
-    }
+    }*/
     
 }
