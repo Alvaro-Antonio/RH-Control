@@ -6,10 +6,15 @@
 package com.recursoshumanos.rhcontrol.rhcontrol.Models;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import org.springframework.stereotype.Component;
 
 /**
@@ -22,7 +27,12 @@ public class Candidato implements Serializable{
         
         private final static long serialVersionUID = 1L;
         @Id
+        @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+        
+        @ManyToOne
+        @JoinColumn(name="candidato_id")
+        private Selecao selecao;
 	private boolean aprovacao;
 	private String avaliacaoGeral;	
         
@@ -36,12 +46,21 @@ public class Candidato implements Serializable{
 	private String email;
 	private String habilidades;
         
-	public Candidato(Integer id,String nome, int idade, String numeroRG, String numeroCPF, String telefone, String endereco,
-			String dataDeNasc, String email,String habilidades,String avaliacao) {
-		
-		this.avaliacaoGeral = avaliacao;
-		
-	}
+	
+    public Candidato(Integer id, boolean aprovacao, String avaliacaoGeral, String nome, int idade, String numeroRG, String numeroCPF, String telefone, String endereco, String dataDeNasc, String email, String habilidades) {
+        this.id = id;
+        this.aprovacao = aprovacao;
+        this.avaliacaoGeral = avaliacaoGeral;
+        this.nome = nome;
+        this.idade = idade;
+        this.numeroRG = numeroRG;
+        this.numeroCPF = numeroCPF;
+        this.telefone = telefone;
+        this.endereco = endereco;
+        this.dataDeNasc = dataDeNasc;
+        this.email = email;
+        this.habilidades = habilidades;
+    }
 
     public Candidato(){};
              
@@ -139,6 +158,31 @@ public class Candidato implements Serializable{
 
     public void setHabilidades(String habilidades) {
         this.habilidades = habilidades;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Candidato other = (Candidato) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
     }
 	
 	

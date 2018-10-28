@@ -6,16 +6,14 @@
 package com.recursoshumanos.rhcontrol.rhcontrol.Models;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.persistence.OneToMany;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+
 
 /**
  *
@@ -26,13 +24,12 @@ import org.springframework.stereotype.Service;
 public class Selecao implements Serializable{
     private final static long serialVersionUID = 1L;
    
-    @ManyToOne
-    @JoinColumn(name="candidato_id")
-    @MapsId
-    private Candidato candidatos;     
+    @OneToMany(mappedBy="selecao")
+    private List<Candidato> candidatos;     
     private String tipoSelecao;
     
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     //private LocalDateTime data;
     public Selecao() {
@@ -42,22 +39,17 @@ public class Selecao implements Serializable{
         
         this.tipoSelecao = tipoSelecao;
 		  
-	  
-	    Candidato c1 = new Candidato(3,"Fulano", 27, "92122156", "45414545", "(81)9239-2343", "", "1233", "fulano@mail.com", "nenhuma", "top");
-	    Candidato c2 = new Candidato(4,"Ciclano", 27, "92452156", "45414545", "(81)9239-2343", "", "1233", "fulano@mail.com", "nenhuma", "top");
-	    //candidatos.add(c1);
-	    //candidatos.add(c2);
     }
 
     /**
      * @return the candidatos
      */
-    public Candidato getCandidatos() {
+    public List<Candidato> getCandidatos() {
         return candidatos;
     }
 
     
-    public void setCandidatos(Candidato candidatos) {
+    public void setCandidatos(List<Candidato> candidatos) {
         this.candidatos = candidatos;
     }
 

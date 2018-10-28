@@ -7,11 +7,10 @@ package com.recursoshumanos.rhcontrol.rhcontrol.controllers;
 
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.Candidato;
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.Selecao;
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,12 +23,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class SelecaoController {
     @Autowired
     private Selecao selecao;
-    
-    /*@RequestMapping(value="/selecao",method = RequestMethod.GET)
-    public ResponseEntity<List<Candidato>> listar(){
-        ArrayList<Candidato> Candidato;
-        
-        return new ResponseEntity<List<Candidato>>(new ArrayList<Candidato>(selecao.getCandidatos()), HttpStatus.OK);
-    }*/
+    @Autowired
+    private SelecaoService service;
+	@RequestMapping(value = "/candidato/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Candidato> find(@PathVariable Integer id) {
+		Candidato candida = service.find(id);
+	 
+	  if (candida == null) {
+	    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	  }
+	 
+	  return new ResponseEntity<Candidato>(candida, HttpStatus.OK);
+	}
     
 }

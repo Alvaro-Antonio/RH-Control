@@ -10,11 +10,13 @@ package com.recursoshumanos.rhcontrol.rhcontrol.controllers;
  * @author user
  */
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.Candidato;
+import com.recursoshumanos.rhcontrol.rhcontrol.repositories.CandidatoRepository;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -34,7 +36,7 @@ public class CandidatoController {
         
         @Autowired
  	private List<Candidato> candidatos;
-        
+               
         @ApiOperation(
 			value="Cadastrar uma nova pessoa", 
 			response=Candidato.class, 
@@ -74,17 +76,8 @@ public class CandidatoController {
 				candidatos), HttpStatus.OK);
 	}
      
-	
-	@RequestMapping(value = "/candidato/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Candidato> buscar(@PathVariable("id") Integer id) {
-		Candidato candida = getCandidatoId(id);
-	 
-	  if (candidatos == null) {
-	    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	  }
-	 
-	  return new ResponseEntity<Candidato>(candida, HttpStatus.OK);
-	}
+	        
+        
        /*@RequestMapping(value="/candidato/{id}", method = RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public @ResponseBody String atualizar(@PathVariable Integer id,@RequestBody Candidato candi){
  
@@ -140,5 +133,7 @@ public class CandidatoController {
                 }
             }
         }
+        
+        
 
 }
