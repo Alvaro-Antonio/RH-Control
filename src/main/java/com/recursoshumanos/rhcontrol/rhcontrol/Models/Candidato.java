@@ -31,7 +31,7 @@ public class Candidato implements Serializable{
 	private Integer id;
         
         @ManyToOne
-        @JoinColumn(name="candidato_id")
+        @JoinColumn(name="selecao_id")
         private Selecao selecao;
 	private boolean aprovacao;
 	private String avaliacaoGeral;	
@@ -47,7 +47,8 @@ public class Candidato implements Serializable{
 	private String habilidades;
         
 	
-    public Candidato(Integer id, boolean aprovacao, String avaliacaoGeral, String nome, int idade, String numeroRG, String numeroCPF, String telefone, String endereco, String dataDeNasc, String email, String habilidades) {
+    public Candidato(Integer id, boolean aprovacao, String avaliacaoGeral, String nome, int idade,
+            String numeroRG, String numeroCPF, String telefone, String endereco, String dataDeNasc, String email, String habilidades,Selecao selecao) {
         this.id = id;
         this.aprovacao = aprovacao;
         this.avaliacaoGeral = avaliacaoGeral;
@@ -60,6 +61,7 @@ public class Candidato implements Serializable{
         this.dataDeNasc = dataDeNasc;
         this.email = email;
         this.habilidades = habilidades;
+        this.selecao = selecao;
     }
 
     public Candidato(){};

@@ -6,11 +6,15 @@
 package com.recursoshumanos.rhcontrol.rhcontrol.Models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import org.springframework.stereotype.Component;
 
@@ -24,35 +28,45 @@ import org.springframework.stereotype.Component;
 public class Selecao implements Serializable{
     private final static long serialVersionUID = 1L;
    
+    
+   
     @OneToMany(mappedBy="selecao")
-    private List<Candidato> candidatos;     
+    private List<Candidato> candidatos = new ArrayList<>();     
     private String tipoSelecao;
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
+    
     //private LocalDateTime data;
     public Selecao() {
     }
 
-    public Selecao(String tipoSelecao) {
-        
+    public Selecao(Integer id ,String tipoSelecao) {
+        this.id = id;
         this.tipoSelecao = tipoSelecao;
+     
 		  
     }
 
-    /**
-     * @return the candidatos
-     */
     public List<Candidato> getCandidatos() {
         return candidatos;
     }
 
-    
     public void setCandidatos(List<Candidato> candidatos) {
         this.candidatos = candidatos;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
+
+    
     /**
      * @return the tipoSelecao
      */
@@ -70,6 +84,31 @@ public class Selecao implements Serializable{
     /*public void removeCandidato(Candidato can){
         candidatos.remove(can);
     }*/
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Selecao other = (Selecao) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
+    }
     
     
 }
