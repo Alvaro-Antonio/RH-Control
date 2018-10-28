@@ -24,10 +24,10 @@ public class GerenteCargo {
 	private List<Cargo> todosCargos = new ArrayList<>();
 
 	public GerenteCargo() {
-		Cargo c1 = new Cargo(1, "TEC. iNFORMATICA", 2.500, 120.0, 50, 75.0);
+		/*Cargo c1 = new Cargo(1, "TEC. iNFORMATICA", 2.500, 120.0, 50, 75.0);
 		Cargo c2 = new Cargo(2, "Tec. Manutenção", 2500, 100, 30, 80);
 		addCargo(c1);
-		addCargo(c2);
+		addCargo(c2);*/
 	}
 
 	public Cargo getBuscarCargo(int id) {

@@ -6,10 +6,14 @@
 package com.recursoshumanos.rhcontrol.rhcontrol.Models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import org.springframework.stereotype.Component;
 
 /**
@@ -25,6 +29,11 @@ public class Cargo implements Serializable{
         @Id
         @GeneratedValue(strategy=GenerationType.IDENTITY)
         private Integer id;
+        
+        
+        @OneToMany(mappedBy="cargo")
+        List<Funcionario> funcionario = new ArrayList<Funcionario>();
+        
 	private String nomeCargo;
 	private double salarioCargo;
 	private double gratificacao;
@@ -33,7 +42,7 @@ public class Cargo implements Serializable{
 	private double valeTransporte;
         
     
-	public Cargo(int id,String nomeCargo, double salarioCargo, double gratificacao, double valeAlimentacao,
+	public Cargo(Integer id,String nomeCargo, double salarioCargo, double gratificacao, double valeAlimentacao,
 			double valeTransporte) {
 		this.nomeCargo = nomeCargo;
 		this.salarioCargo = salarioCargo;
@@ -41,6 +50,7 @@ public class Cargo implements Serializable{
 		this.id = id;
 		this.valeAlimentacao = valeAlimentacao;
 		this.valeTransporte = valeTransporte;
+                
 	}
         public Cargo(){};
 
@@ -88,12 +98,39 @@ public class Cargo implements Serializable{
 		return valeTransporte;
         }
 
-        public int getId() {
+        public Integer getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(Integer id) {
             this.id = id;
         }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 13 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cargo other = (Cargo) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
+    }
+        
+        
         
 }

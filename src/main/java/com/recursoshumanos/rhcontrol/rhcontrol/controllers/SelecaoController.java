@@ -5,6 +5,7 @@
  */
 package com.recursoshumanos.rhcontrol.rhcontrol.controllers;
 
+import com.recursoshumanos.rhcontrol.rhcontrol.Models.SelecaoService;
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.Candidato;
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.Selecao;
 import org.springframework.beans.factory.annotation.Autowired;

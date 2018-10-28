@@ -10,37 +10,41 @@ package com.recursoshumanos.rhcontrol.rhcontrol.Models;
  * @author user
  */
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Funcionario  {
+public class Funcionario  implements Serializable{
+        
+        private final static long serialVersionUID = 1L;
     
-	private Cargo cargo;
 	//private List<Advertencia> advertencias= new ArrayList<Advertencia>();
 	private String dataDaAdmicao;
 	private int quantAdvertencia;
 	private int quantHorasExtrasMensal;
         @Id
         private Integer id;
+        
+        @ManyToOne
+        @JoinColumn(name="cargo_id")
+        private Cargo cargo;
 
-	public Funcionario(Cargo cargo, String dataDaAdmicao,Candidato candidato) {
-		this.cargo = cargo;
+    public Funcionario() {
+    }
+
+	public Funcionario(Integer id,Cargo cargo,String dataDaAdmicao,Candidato candidato) {
 		this.dataDaAdmicao = dataDaAdmicao;
+                this.id = id;
+                this.cargo = cargo;
 	}
 	
-	
-
-	public Cargo getCargo() {
-		return cargo;
-	}
-
-	public void setCargo(Cargo cargo) {
-		this.cargo = cargo;
-	}
-
 	/*public List<Advertencia> getAdvertencias() {
 		return advertencias;
 	}
@@ -64,11 +68,11 @@ public class Funcionario  {
 	public void setQuantAdvertencia(int quantAdvertencia) {
 		this.quantAdvertencia = quantAdvertencia;
 	}
-	public double getSalarioBruto() {
+	/*public double getSalarioBruto() {
 		double salario = cargo.getGratificacao() + cargo.getSalarioCargo() + cargo.getValeAlimentacao() + cargo.getValeTransporte()+ (quantHorasExtrasMensal * cargo.getValorHoraExtra());
 		return salario;
 	}
-
+*/
 
 
 	public int getQuantHorasExtrasMensal() {
@@ -80,12 +84,18 @@ public class Funcionario  {
 	public void setQuantHorasExtrasMensal(int quantHorasExtrasMensal) {
 		this.quantHorasExtrasMensal = quantHorasExtrasMensal;
 	}
+        
 
+    public Cargo getCargos() {
+        return cargo;
+    }
 
-
-	//public void setAdvertencias(List<Advertencia> advertencias) {
-	//	this.advertencias = advertencias;
-	//}
+    //public void setAdvertencias(List<Advertencia> advertencias) {
+    //	this.advertencias = advertencias;
+    //}
+    public void setCargos(Cargo cargos) {
+        this.cargo = cargos;        
+    }
 
     public Integer getId() {
         return id;
@@ -94,6 +104,33 @@ public class Funcionario  {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 23 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Funcionario other = (Funcionario) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
+    }
+
+    
 	
 	
 }

@@ -50,12 +50,12 @@ public class GerenteFuncionario {
 		throw new FuncionarioNaoExisteException("Funionario não encontrado!");
 	
         }
-	public void promoverFuncionario(int id,Cargo cargo) throws FuncionarioNaoExisteException{
+	/*public void promoverFuncionario(int id,Cargo cargo) throws FuncionarioNaoExisteException{
 		for(Funcionario k : todosFuncionarios) {
 			if(k.getId() == id) k.setCargo(cargo);
 		}
 		throw new FuncionarioNaoExisteException("Esse funcionário Não pode ser Encontrado");
-	}
+	}*/
 	
 	/*public void desligarFuncionario(String nome) throws FuncionarioNaoExisteException{
 		for(Funcionario k : todosFuncionarios) {
