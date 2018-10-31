@@ -27,8 +27,18 @@ public class Funcionario  implements Serializable{
     
 	//private List<Advertencia> advertencias= new ArrayList<Advertencia>();
 	private String dataDaAdmicao;
-	private int quantAdvertencia;
 	private int quantHorasExtrasMensal;
+        
+        private String nome;
+	private int idade;
+	private String numeroRG;
+	private String numeroCPF;
+	private String telefone;
+	private String endereco;
+	private String dataDeNasc;
+	private String email;
+	private String habilidades;
+        
         @Id
         private Integer id;
         
@@ -40,6 +50,14 @@ public class Funcionario  implements Serializable{
     }
 
 	public Funcionario(Integer id,Cargo cargo,String dataDaAdmicao,Candidato candidato) {
+                this.nome = candidato.getNome();
+                this.idade = candidato.getIdade();
+                this.numeroRG = candidato.getNumeroRG();
+                this.numeroCPF = candidato.getNumeroCPF();
+                this.telefone = candidato.getTelefone();
+                this.endereco = candidato.getEndereco();
+                this.email =  candidato.getEmail();
+                this.habilidades = candidato.getHabilidades();
 		this.dataDaAdmicao = dataDaAdmicao;
                 this.id = id;
                 this.cargo = cargo;
@@ -74,7 +92,7 @@ public class Funcionario  implements Serializable{
 	}
 */
 
-
+        
 	public int getQuantHorasExtrasMensal() {
 		return quantHorasExtrasMensal;
 	}
@@ -105,6 +123,78 @@ public class Funcionario  implements Serializable{
         this.id = id;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+
+    public String getNumeroRG() {
+        return numeroRG;
+    }
+
+    public void setNumeroRG(String numeroRG) {
+        this.numeroRG = numeroRG;
+    }
+
+    public String getNumeroCPF() {
+        return numeroCPF;
+    }
+
+    public void setNumeroCPF(String numeroCPF) {
+        this.numeroCPF = numeroCPF;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getDataDeNasc() {
+        return dataDeNasc;
+    }
+
+    public void setDataDeNasc(String dataDeNasc) {
+        this.dataDeNasc = dataDeNasc;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getHabilidades() {
+        return habilidades;
+    }
+
+    public void setHabilidades(String habilidades) {
+        this.habilidades = habilidades;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 3;

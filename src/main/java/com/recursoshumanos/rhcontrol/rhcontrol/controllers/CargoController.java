@@ -64,20 +64,18 @@ public class CargoController {
 					)
  
 	})
-	@RequestMapping(value="/cargo", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE,produces=MediaType.APPLICATION_JSON_UTF8_VALUE)	
-        @CrossOrigin(origins= crossOrigin)
-	public @ResponseBody ResponseEntity<ResponseEntity> salvar(@RequestBody Cargo cargo){
- 
+	@RequestMapping(value="/cargo", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE,produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public @ResponseBody ResponseModel salvar(@RequestBody Cargo cargo){
  
 		try {
  
 			this.gerenteCargo.save(cargo);
  
-			return new ResponseEntity<>(HttpStatus.CREATED);
-                        
+			return new ResponseModel(1,"Registro salvo com sucesso!");
+ 
 		}catch(Exception e) {
  
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);			
+			return new ResponseModel(0,e.getMessage());			
 		}
 	}
         
@@ -100,14 +98,6 @@ public class CargoController {
 	}
         
         
-	/*@RequestMapping(value = "/cargo/{id}", method = RequestMethod.PUT)
-        public ResponseEntity updateCargo(@PathVariable Integer id, @RequestBody Cargo cargo){
-        try {
-        gerenteCargo.save(cargo);
-        return new ResponseEntity("Cargo Atualizado", HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity("Cargo Atualizado", HttpStatus.INTERNAL_SERVER_ERROR);
-        }*/
         @RequestMapping(value="/cargo", method = RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public @ResponseBody ResponseModel atualizar(@RequestBody Cargo cargo){
  
@@ -120,6 +110,20 @@ public class CargoController {
 		}catch(Exception e) {
  
 			return new ResponseModel(0,e.getMessage());
+		}
+	}
+        
+        @RequestMapping(value="/cargo/{id}", method = RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public @ResponseBody ResponseModel excluir(@PathVariable("id") Integer id){
+ 
+		try {
+ 
+			gerenteCargo.remove(id);
+ 
+			return new ResponseModel(1, "Cargo excluido com sucesso!");
+ 
+		}catch(Exception e) {
+			return new ResponseModel(0, e.getMessage());
 		}
 	}
         

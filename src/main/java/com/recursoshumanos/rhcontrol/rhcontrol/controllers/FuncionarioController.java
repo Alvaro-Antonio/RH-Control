@@ -30,12 +30,9 @@ public class FuncionarioController {
     @Autowired
     private GerenteFuncionario gerenteFuncionario;
 
-    @Autowired
-    private GerenteCargoService gerenteCargo;
     
     public FuncionarioController() {
-        Candidato cand1 = new Candidato();
-        //Funcionario f1 = new Funcionario(c1, "31/03/2011", );
+        
     }
 
     @ApiOperation(value = "Cadastrar um novo Cargo", response = Cargo.class, notes = "Essa operação salva um novo registro com as informações do Cargo.")

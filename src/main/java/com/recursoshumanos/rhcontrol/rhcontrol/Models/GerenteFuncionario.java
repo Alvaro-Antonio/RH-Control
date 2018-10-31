@@ -7,9 +7,11 @@ package com.recursoshumanos.rhcontrol.rhcontrol.Models;
  */
 
 import RecurosHumanos.ufpb.RecurosHumanos.Exceptions.FuncionarioNaoExisteException;
+import com.recursoshumanos.rhcontrol.rhcontrol.repositories.FuncionarioRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,47 +23,27 @@ import org.springframework.stereotype.Service;
 @Service
 public class GerenteFuncionario {
         
-    private List<Funcionario> todosFuncionarios;
-    
     @Autowired
-    private GerenteCargoService gerenteCargo;
-
+    private FuncionarioRepository funcionarioRepository;
+    
+   
 	public GerenteFuncionario(){
-		todosFuncionarios = new ArrayList<>();
+		
 	}
 	public void addFuncionario(Funcionario funcionario) {
-		todosFuncionarios.add(funcionario);
+		funcionarioRepository.save(funcionario);
 	}
 
 	public List<Funcionario> getTodosFuncionarios() {
-		return todosFuncionarios;
+		return funcionarioRepository.findAll();
 	}
-
-	public void setTodosFuncionarios(List<Funcionario> todosFuncionarios) {
-		this.todosFuncionarios = todosFuncionarios;
-	}
-	
-	public Funcionario buscarFuncionario(Integer id)throws FuncionarioNaoExisteException{
-		for( Funcionario c : todosFuncionarios) {
-			if(c.getId() == id){
-                                return c;
-                        }
-                }
-		throw new FuncionarioNaoExisteException("Funionario não encontrado!");
-	
+        public Funcionario getFuncionario(Integer id){
+            Optional<Funcionario> obj = funcionarioRepository.findById(id);
+            return obj.orElse(null);
         }
-	/*public void promoverFuncionario(int id,Cargo cargo) throws FuncionarioNaoExisteException{
-		for(Funcionario k : todosFuncionarios) {
-			if(k.getId() == id) k.setCargo(cargo);
-		}
-		throw new FuncionarioNaoExisteException("Esse funcionário Não pode ser Encontrado");
-	}*/
-	
-	/*public void desligarFuncionario(String nome) throws FuncionarioNaoExisteException{
-		for(Funcionario k : todosFuncionarios) {
-			if(k.getNome().equals(nome)) todosFuncionarios.remove(k);
-		}
-		throw new FuncionarioNaoExisteException("Esse funcionário Não pode ser Encontrado");
-	}*/
+        public void deletaFuncionario(Integer id){
+            funcionarioRepository.deleteById(id);
+        }
+       
 	
 }
