@@ -24,7 +24,7 @@ public class GerenteFuncionario {
     private List<Funcionario> todosFuncionarios;
     
     @Autowired
-    private GerenteCargo gerenteCargo;
+    private GerenteCargoService gerenteCargo;
 
 	public GerenteFuncionario(){
 		todosFuncionarios = new ArrayList<>();

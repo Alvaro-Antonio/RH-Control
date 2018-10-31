@@ -12,6 +12,7 @@ package com.recursoshumanos.rhcontrol.rhcontrol.Models;
 
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.Candidato;
 import com.recursoshumanos.rhcontrol.rhcontrol.repositories.CandidatoRepository;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,28 @@ public class SelecaoService {
         public Candidato find(Integer id){
             Optional<Candidato> obj = repo.findById(id);
             return obj.orElse(null);
+        }
+        public List<Candidato> findAll(){
+            List<Candidato> obj = repo.findAll();
+            return obj;
+        }
+        
+         public void remove(Integer id){
+                repo.deleteById(id);
+        
+	}
+        public void save (Candidato candidato){
+               repo.save(candidato);
+        }
+        
+        public boolean create(Candidato c){
+            try {
+                repo.save(c);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+            
+            
         }
 }

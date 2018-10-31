@@ -54,7 +54,7 @@ public class CandidatoController {
 					)
  
 	})
-	@RequestMapping(value="/candidato", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE,produces=MediaType.APPLICATION_JSON_UTF8_VALUE)	
+	/*@RequestMapping(value="/candidato", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE,produces=MediaType.APPLICATION_JSON_UTF8_VALUE)	
 	public @ResponseBody ResponseEntity<String> salvar(@RequestBody Candidato candidato){
  
  
@@ -69,12 +69,12 @@ public class CandidatoController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);			
 		}
 	}
-      
-	@RequestMapping(value = "/candidato", method = RequestMethod.GET)
+      */
+	/*@RequestMapping(value = "/candidato", method = RequestMethod.GET)
 	public ResponseEntity<List<Candidato>> listar() {
 		return new ResponseEntity<List<Candidato>>(new ArrayList<Candidato>(
 				candidatos), HttpStatus.OK);
-	}
+	}*/
      
 	        
         

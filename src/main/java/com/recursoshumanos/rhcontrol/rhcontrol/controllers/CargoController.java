@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.Cargo;
-import com.recursoshumanos.rhcontrol.rhcontrol.Models.GerenteCargo;
+import com.recursoshumanos.rhcontrol.rhcontrol.Models.GerenteCargoService;
 
 /**
  *
@@ -34,7 +34,7 @@ import com.recursoshumanos.rhcontrol.rhcontrol.Models.GerenteCargo;
 public class CargoController {
 	
 	@Autowired
-	private GerenteCargo gerenteCargo;
+	private GerenteCargoService gerenteCargo;
 	
     public CargoController(){
     }
@@ -67,7 +67,7 @@ public class CargoController {
  
 		try {
  
-			this.gerenteCargo.addCargo(cargo);
+			this.gerenteCargo.save(cargo);
  
 			return new ResponseEntity<>(HttpStatus.CREATED);
                         
@@ -77,10 +77,10 @@ public class CargoController {
 		}
 	}
         
-    @RequestMapping(value = "/cargo", method = RequestMethod.GET)
+        @RequestMapping(value = "/cargo", method = RequestMethod.GET)
 	public ResponseEntity<List<Cargo>> listar() {
 		return new ResponseEntity<List<Cargo>>(new ArrayList<Cargo>(
-				gerenteCargo.getTodosCargos()), HttpStatus.OK);
+				gerenteCargo.findAll()), HttpStatus.OK);
 	}
      
 	@RequestMapping(value = "/cargo/{id}", method = RequestMethod.GET)
@@ -96,15 +96,9 @@ public class CargoController {
         
         
 	@RequestMapping(value = "/cargo/{id}", method = RequestMethod.PUT)
-    public ResponseEntity updateCargo(@PathVariable Integer id, @RequestBody Cargo cargo){
+        public ResponseEntity updateCargo(@PathVariable Integer id, @RequestBody Cargo cargo){
         try {
-        Cargo cargoCompara = gerenteCargo.getBuscarCargo(id);
-        cargoCompara.setNomeCargo(cargo.getNomeCargo());
-        cargoCompara.setSalarioCargo(cargo.getSalarioCargo());
-        cargoCompara.setGratificacao(cargo.getGratificacao());
-        cargoCompara.setValeAlimentacao(cargo.getValeAlimentacao());
-        cargoCompara.setValorHoraExtra(cargo.getValorHoraExtra());
-        gerenteCargo.updateCargo(cargoCompara);
+        gerenteCargo.save(cargo);
         return new ResponseEntity("Cargo Atualizado", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity("Cargo Atualizado", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -113,9 +107,9 @@ public class CargoController {
     }
     
     
-    public Cargo getCargoId(int id){
+        public Cargo getCargoId(int id){
     
-        for(Cargo k : this.gerenteCargo.getTodosCargos()){
+        for(Cargo k : this.gerenteCargo.findAll()){
             if(k.getId() == id){
                 return k;
             }

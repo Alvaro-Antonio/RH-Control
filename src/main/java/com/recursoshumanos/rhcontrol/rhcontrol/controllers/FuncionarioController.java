@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.recursoshumanos.rhcontrol.rhcontrol.Models.GerenteCargo;
+import com.recursoshumanos.rhcontrol.rhcontrol.Models.GerenteCargoService;
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.GerenteFuncionario;
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.Selecao;
 import org.springframework.http.MediaType;
@@ -31,7 +31,7 @@ public class FuncionarioController {
     private GerenteFuncionario gerenteFuncionario;
 
     @Autowired
-    private GerenteCargo gerenteCargo;
+    private GerenteCargoService gerenteCargo;
     
     public FuncionarioController() {
         Candidato cand1 = new Candidato();
