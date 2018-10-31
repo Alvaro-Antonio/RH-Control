@@ -62,7 +62,7 @@ public class FuncionarioController {
         }
     }
 */
-    @RequestMapping(value = "/funcionario/{id}", method = RequestMethod.GET)
+   /* @RequestMapping(value = "/funcionario/{id}", method = RequestMethod.GET)
     public ResponseEntity<Cargo> buscar(@PathVariable("id") Integer id) {
         Cargo carg = getCargoId(id);
 
@@ -71,7 +71,7 @@ public class FuncionarioController {
         }
 
         return new ResponseEntity<Cargo>(carg, HttpStatus.OK);
-    }
+    }*/
 
     @RequestMapping(value = "/funcionario/{id}/cargo/", method = RequestMethod.PUT)
     public ResponseEntity updateCargo(@PathVariable Integer idFunc,@RequestBody String cargo) {
@@ -93,14 +93,4 @@ public class FuncionarioController {
 
     }
     
-    public Cargo getCargoId(int id) {
-
-        for (Cargo k : this.gerenteCargo.getTodosCargos()) {
-            if (k.getId() == id) {
-                return k;
-            }
-
-        }
-        return null;
-    }
 }
