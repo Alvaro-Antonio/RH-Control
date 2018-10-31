@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.Cargo;
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.GerenteCargoService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 /**
  *
@@ -36,6 +37,7 @@ public class CargoController {
 	@Autowired
 	private GerenteCargoService gerenteCargo;
 	
+        private final String crossOrigin = "http://10.0.2.46:4200";
     public CargoController(){
     }
     
@@ -62,6 +64,7 @@ public class CargoController {
  
 	})
 	@RequestMapping(value="/cargo", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE,produces=MediaType.APPLICATION_JSON_UTF8_VALUE)	
+        @CrossOrigin(origins= crossOrigin)
 	public @ResponseBody ResponseEntity<ResponseEntity> salvar(@RequestBody Cargo cargo){
  
  
@@ -78,15 +81,16 @@ public class CargoController {
 	}
         
         @RequestMapping(value = "/cargo", method = RequestMethod.GET)
+        @CrossOrigin(origins= crossOrigin)
 	public ResponseEntity<List<Cargo>> listar() {
 		return new ResponseEntity<List<Cargo>>(new ArrayList<Cargo>(
 				gerenteCargo.findAll()), HttpStatus.OK);
 	}
      
 	@RequestMapping(value = "/cargo/{id}", method = RequestMethod.GET)
+        @CrossOrigin(origins= crossOrigin)
 	public ResponseEntity<Cargo> buscar(@PathVariable("id") Integer id) {
-		Cargo carg = getCargoId(id);
-	 
+		Cargo carg = gerenteCargo.getBuscarCargo(id);
 	  if (carg == null) {
 	    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	  }
@@ -107,14 +111,4 @@ public class CargoController {
     }
     
     
-        public Cargo getCargoId(int id){
-    
-        for(Cargo k : this.gerenteCargo.findAll()){
-            if(k.getId() == id){
-                return k;
-            }
-            
-        }
-        return null;
-    }
-}
+     }
