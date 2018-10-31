@@ -99,16 +99,30 @@ public class CargoController {
 	}
         
         
-	@RequestMapping(value = "/cargo/{id}", method = RequestMethod.PUT)
+	/*@RequestMapping(value = "/cargo/{id}", method = RequestMethod.PUT)
         public ResponseEntity updateCargo(@PathVariable Integer id, @RequestBody Cargo cargo){
         try {
         gerenteCargo.save(cargo);
         return new ResponseEntity("Cargo Atualizado", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity("Cargo Atualizado", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        }*/
+        @RequestMapping(value="/cargo", method = RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public @ResponseBody ResponseModel atualizar(@RequestBody Cargo cargo){
+ 
+		try {
+ 
+			gerenteCargo.save(cargo);		
+ 
+			return new ResponseModel(1,"Registro atualizado com sucesso!");
+ 
+		}catch(Exception e) {
+ 
+			return new ResponseModel(0,e.getMessage());
+		}
+	}
         
-    }
     
     
-     }
+    
+  }
