@@ -15,12 +15,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import org.springframework.stereotype.Component;
 
 @Entity
+@Component
 public class Funcionario  implements Serializable{
         
         private final static long serialVersionUID = 1L;
@@ -40,6 +44,7 @@ public class Funcionario  implements Serializable{
 	private String habilidades;
         
         @Id
+        @GeneratedValue(strategy=GenerationType.IDENTITY)
         private Integer id;
         
         @ManyToOne
@@ -79,13 +84,6 @@ public class Funcionario  implements Serializable{
 		this.dataDaAdmicao = dataDaAdmicao;
 	}
 
-	public int getQuantAdvertencia() {
-		return quantAdvertencia;
-	}
-
-	public void setQuantAdvertencia(int quantAdvertencia) {
-		this.quantAdvertencia = quantAdvertencia;
-	}
 	/*public double getSalarioBruto() {
 		double salario = cargo.getGratificacao() + cargo.getSalarioCargo() + cargo.getValeAlimentacao() + cargo.getValeTransporte()+ (quantHorasExtrasMensal * cargo.getValorHoraExtra());
 		return salario;

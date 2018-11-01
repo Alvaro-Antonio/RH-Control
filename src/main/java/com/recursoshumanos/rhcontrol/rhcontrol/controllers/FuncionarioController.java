@@ -18,6 +18,7 @@ import com.recursoshumanos.rhcontrol.rhcontrol.Models.GerenteCargoService;
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.GerenteFuncionario;
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.Selecao;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author user
  */
 @RestController
+@CrossOrigin(origins= "http://10.0.3.14")
 public class FuncionarioController {
 
     @Autowired

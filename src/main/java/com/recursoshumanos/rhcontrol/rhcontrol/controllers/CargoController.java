@@ -33,13 +33,13 @@ import org.springframework.web.bind.annotation.CrossOrigin;
  * @author user
  */
 @RestController
+@CrossOrigin(origins= "http://10.0.3.14")
 public class CargoController {
 	
 	@Autowired
 	private GerenteCargoService gerenteCargo;
 	
-        private final String crossOrigin = "http://10.0.2.46:4200";
-    public CargoController(){
+        public CargoController(){
     }
     
     @ApiOperation(
@@ -80,14 +80,14 @@ public class CargoController {
 	}
         
         @RequestMapping(value = "/cargo", method = RequestMethod.GET)
-        @CrossOrigin(origins= crossOrigin)
+        
 	public ResponseEntity<List<Cargo>> listar() {
 		return new ResponseEntity<List<Cargo>>(new ArrayList<Cargo>(
 				gerenteCargo.findAll()), HttpStatus.OK);
 	}
      
 	@RequestMapping(value = "/cargo/{id}", method = RequestMethod.GET)
-        @CrossOrigin(origins= crossOrigin)
+       
 	public ResponseEntity<Cargo> buscar(@PathVariable("id") Integer id) {
 		Cargo carg = gerenteCargo.getBuscarCargo(id);
 	  if (carg == null) {

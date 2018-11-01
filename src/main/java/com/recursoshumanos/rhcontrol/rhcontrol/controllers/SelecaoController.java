@@ -26,15 +26,15 @@ import org.springframework.web.bind.annotation.RestController;
  * @author alvaro
  */
 @RestController
+@CrossOrigin(origins= "http://10.0.3.14")
 public class SelecaoController {
     @Autowired
     private Selecao selecao;
     @Autowired
     private SelecaoService service;
     
-    private final String crossOrigin = "http://10.0.2.46:4200";
-	@RequestMapping(value = "/candidato/{id}", method = RequestMethod.GET)
-        @CrossOrigin(origins=crossOrigin)
+    	@RequestMapping(value = "/candidato/{id}", method = RequestMethod.GET)
+        
 	public ResponseEntity<Candidato> find(@PathVariable Integer id) {
 		Candidato candida = service.find(id);
 	 
@@ -45,7 +45,7 @@ public class SelecaoController {
 	  return new ResponseEntity<Candidato>(candida, HttpStatus.OK);
 	}
         @RequestMapping(value = "/candidato", method = RequestMethod.GET)
-        @CrossOrigin(origins="http://10.0.2.46:4200")	
+        
         public ResponseEntity<List<Candidato>> findAll() {
 		List<Candidato> candida = service.findAll();
 	 
@@ -56,7 +56,7 @@ public class SelecaoController {
 	  return new ResponseEntity<List<Candidato>>(candida, HttpStatus.OK);
 	}
         @RequestMapping(value="/candidato", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE,produces=MediaType.APPLICATION_JSON_UTF8_VALUE)	
-        @CrossOrigin(origins="http://10.0.2.46:4200")
+       
 	public @ResponseBody ResponseEntity<ResponseEntity> salvar(@RequestBody Candidato candidato){ 
 		
             boolean cand = service.create(candidato);
