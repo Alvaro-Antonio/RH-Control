@@ -33,7 +33,7 @@ public class Selecao implements Serializable{
     @OneToMany(mappedBy="selecao")
     private List<Candidato> candidatos = new ArrayList<>();     
     private String tipoSelecao;
-    
+    private String dataSelecao;
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
@@ -42,10 +42,10 @@ public class Selecao implements Serializable{
     public Selecao() {
     }
 
-    public Selecao(Integer id ,String tipoSelecao) {
+    public Selecao(Integer id ,String tipoSelecao, String dataSelecao) {
         this.id = id;
         this.tipoSelecao = tipoSelecao;
-     
+        this.dataSelecao = dataSelecao;
 		  
     }
 
@@ -80,10 +80,18 @@ public class Selecao implements Serializable{
     public void setTipoSelecao(String tipoSelecao) {
         this.tipoSelecao = tipoSelecao;
     }
+
     
+    public String getDataSelecao() {
+        return dataSelecao;
+    }
+
     /*public void removeCandidato(Candidato can){
-        candidatos.remove(can);
+    candidatos.remove(can);
     }*/
+    public void setDataSelecao(String dataSelecao) {    
+        this.dataSelecao = dataSelecao;
+    }
 
     @Override
     public int hashCode() {

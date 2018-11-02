@@ -7,6 +7,7 @@ package com.recursoshumanos.rhcontrol.rhcontrol.controllers;
 
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.SelecaoService;
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.Candidato;
+import com.recursoshumanos.rhcontrol.rhcontrol.Models.ResponseModel;
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.Selecao;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author alvaro
  */
 @RestController
-@CrossOrigin(origins= "http://10.0.3.14")
+@CrossOrigin(origins= "http://172.17.3.53")
 public class SelecaoController {
     @Autowired
     private Selecao selecao;
@@ -55,17 +56,47 @@ public class SelecaoController {
 	 
 	  return new ResponseEntity<List<Candidato>>(candida, HttpStatus.OK);
 	}
-        @RequestMapping(value="/candidato", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE,produces=MediaType.APPLICATION_JSON_UTF8_VALUE)	
-       
-	public @ResponseBody ResponseEntity<ResponseEntity> salvar(@RequestBody Candidato candidato){ 
-		
-            boolean cand = service.create(candidato);
-            if (cand){
-                return new ResponseEntity<>(HttpStatus.CREATED);
-            }      
-            else{            
- 		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);			
+       @RequestMapping(value="/candidato", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE,produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public @ResponseBody ResponseModel salvar(@RequestBody Candidato cand){
+ 
+		try {
+ 
+			this.service.create(cand);
+ 
+			return new ResponseModel(1,"Registro salvo com sucesso!");
+ 
+		}catch(Exception e) {
+ 
+			return new ResponseModel(0,e.getMessage());			
+		}
 	}
+        
+       @RequestMapping(value="/candidato", method = RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public @ResponseBody ResponseModel atualizar(@RequestBody Candidato c){
+ 
+		try {
+ 
+			service.save(c);		
+ 
+			return new ResponseModel(1,"Registro atualizado com sucesso!");
+ 
+		}catch(Exception e) {
+ 
+			return new ResponseModel(0,e.getMessage());
+		}
+	}
+        @RequestMapping(value="/candidato/{id}", method = RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public @ResponseBody ResponseModel excluir(@PathVariable("id") Integer id){
+ 
+		try {
+ 
+			service.remove(id);
+ 
+			return new ResponseModel(1, "Candidato excluido com sucesso!");
+ 
+		}catch(Exception e) {
+			return new ResponseModel(0, e.getMessage());
+		}
 	}
     
 }

@@ -50,6 +50,11 @@ public class Funcionario  implements Serializable{
         @ManyToOne
         @JoinColumn(name="cargo_id")
         private Cargo cargo;
+        
+        @ManyToOne
+        @JoinColumn(name="treinamento_id")
+        private Treinamento treinamento;
+
 
     public Funcionario() {
     }

@@ -31,8 +31,8 @@ public class RhControlApplication implements CommandLineRunner{
      
     @Override    
     public void run(String... args) throws Exception{
-        Selecao curriculo = new Selecao(null,"Curricular");
-        Selecao testeFisico = new Selecao(null,"testeFisico");
+        Selecao curriculo = new Selecao(null,"Curricular","31/10/2018");
+        Selecao testeFisico = new Selecao(null,"testeFisico","20/12/2018");
        
         Candidato cand1 = new Candidato(null, true, "Ta bom", "Álvaro", 25, "sadsa", "asd", "8199999", "Universidade", "31/03/93", "alvaro@mail.com", "Linux, Shell",curriculo);
         Candidato cand2 = new Candidato(null, false, "Ta ruim", "Cicero", 26, "sadsa", "asd", "8199999", "Universidade", "30/07/91", "cicero@mail.com", "Linux, Shell",testeFisico);

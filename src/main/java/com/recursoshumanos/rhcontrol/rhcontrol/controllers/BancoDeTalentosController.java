@@ -6,9 +6,6 @@
 package com.recursoshumanos.rhcontrol.rhcontrol.controllers;
 
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.ResponseModel;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.BancoDeTalentos;
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.BancoDeTalentosService;
-import com.recursoshumanos.rhcontrol.rhcontrol.Models.Candidato;
-import com.recursoshumanos.rhcontrol.rhcontrol.Models.Cargo;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 /**
@@ -35,7 +30,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
  * @author naian
  */
 @RestController
-@CrossOrigin(origins= "http://10.0.3.14")
+@CrossOrigin(origins= "http://172.17.3.53")
 public class BancoDeTalentosController {
     
     @Autowired

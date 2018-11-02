@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
  * @author user
  */
 @RestController
-@CrossOrigin(origins= "http://10.0.3.14")
+@CrossOrigin(origins= "http://172.17.3.53")
 public class CargoController {
 	
 	@Autowired
@@ -86,8 +86,7 @@ public class CargoController {
 				gerenteCargo.findAll()), HttpStatus.OK);
 	}
      
-	@RequestMapping(value = "/cargo/{id}", method = RequestMethod.GET)
-       
+	@RequestMapping(value = "/cargo/{id}", method = RequestMethod.GET)       
 	public ResponseEntity<Cargo> buscar(@PathVariable("id") Integer id) {
 		Cargo carg = gerenteCargo.getBuscarCargo(id);
 	  if (carg == null) {
