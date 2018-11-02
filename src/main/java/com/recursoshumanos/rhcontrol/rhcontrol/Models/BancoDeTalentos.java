@@ -1,18 +1,27 @@
 
 package com.recursoshumanos.rhcontrol.rhcontrol.Models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 /**
  *
  * @author alvaro
  */
-@Service
-public class BancoDeTalentos {
-    
+@Entity
+@Component
+public class BancoDeTalentos implements Serializable{
+        @Id
+        @GeneratedValue(strategy=GenerationType.IDENTITY)
+        private Integer id;
     @Autowired
     private List<Candidato> talentos;
     
