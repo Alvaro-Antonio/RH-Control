@@ -37,7 +37,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author alvaro
  */
 @RestController
-@CrossOrigin(origins= "http://172.17.3.53")
+@CrossOrigin(origins= "http://172.17.4.50")
 public class SelecaoController {
     @Autowired
     private Selecao selecao;

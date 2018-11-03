@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author naian
  */
 @RestController
-@CrossOrigin(origins= "http://10.0.3.14")
+@CrossOrigin(origins= "http://172.17.4.50")
 public class AdvertenciaController {
     
     @Autowired

@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author user
  */
 @RestController
-@CrossOrigin(origins= "http://172.17.3.53")
+@CrossOrigin(origins= "http://172.17.4.50")
 public class FuncionarioController {
 
     @Autowired
