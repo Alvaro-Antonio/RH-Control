@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import org.springframework.stereotype.Component;
 
@@ -95,7 +93,7 @@ public class Selecao implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 9;
         hash = 83 * hash + Objects.hashCode(this.id);
         return hash;
     }

@@ -48,11 +48,23 @@ public class FuncionarioController {
 			return new ResponseModel(0,e.getMessage());			
 		}
 	}
-        @RequestMapping(value = "/funcionario", method = RequestMethod.GET)        
-	public ResponseEntity<List<Funcionario>> listar() {
-		return new ResponseEntity<List<Funcionario>>(new ArrayList<Funcionario>(
-				gerenteFuncionario.getTodosFuncionarios()), HttpStatus.OK);
+              
+	@RequestMapping(value="/funcionario", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public @ResponseBody List<Funcionario> consultar(){
+ 
+		return this.gerenteFuncionario.getTodosFuncionarios();
 	}
+        
+        @RequestMapping(value = "/funcionario/{id}", method = RequestMethod.GET)       
+	public ResponseEntity<Funcionario> buscar(@PathVariable("id") Integer id) {
+		Funcionario fun = gerenteFuncionario.getFuncionario(id);
+	  if (fun == null) {
+	    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	  }
+	 
+	  return new ResponseEntity<Funcionario>(fun, HttpStatus.OK);
+	}
+        
         
         @RequestMapping(value="/funcionario/{id}", method = RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public @ResponseBody ResponseModel excluir(@PathVariable("id") Integer id){

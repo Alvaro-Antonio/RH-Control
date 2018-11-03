@@ -7,9 +7,19 @@ package com.recursoshumanos.rhcontrol.rhcontrol.controllers;
 
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.SelecaoService;
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.Candidato;
+import com.recursoshumanos.rhcontrol.rhcontrol.Models.Cargo;
+import com.recursoshumanos.rhcontrol.rhcontrol.Models.Funcionario;
+import com.recursoshumanos.rhcontrol.rhcontrol.Models.GerenteFuncionario;
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.ResponseModel;
 import com.recursoshumanos.rhcontrol.rhcontrol.Models.Selecao;
+import com.recursoshumanos.rhcontrol.rhcontrol.repositories.SelecaoRepository;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Optional;
+import javassist.compiler.ast.StringL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,9 +43,12 @@ public class SelecaoController {
     private Selecao selecao;
     @Autowired
     private SelecaoService service;
+    @Autowired
+    private SelecaoRepository serviceSelecao;
+    @Autowired
+    private GerenteFuncionario gerenteFuncionario;
     
-    	@RequestMapping(value = "/candidato/{id}", method = RequestMethod.GET)
-        
+    	@RequestMapping(value = "/candidato/{id}", method = RequestMethod.GET)        
 	public ResponseEntity<Candidato> find(@PathVariable Integer id) {
 		Candidato candida = service.find(id);
 	 
@@ -98,5 +111,43 @@ public class SelecaoController {
 			return new ResponseModel(0, e.getMessage());
 		}
 	}
-    
+        
+        @RequestMapping(value = "/selecao/{id}", method = RequestMethod.GET)
+        
+	public ResponseEntity<Optional<Selecao>> findSelecao(@PathVariable Integer id) {
+		Optional<Selecao> selecao = serviceSelecao.findById(id);
+	 
+	  if (selecao == null) {
+	    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	  }
+	 
+	  return new ResponseEntity<Optional<Selecao>>(selecao, HttpStatus.OK);
+	}
+        
+        @RequestMapping(value = "/selecao", method = RequestMethod.GET)        
+        public ResponseEntity<List<Selecao>> findAllSelecao() {
+		List<Selecao> selecao = serviceSelecao.findAll();
+	 
+	  if (selecao == null) {
+	    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	  }
+	 
+	  return new ResponseEntity<List<Selecao>>(selecao, HttpStatus.OK);
+	}
+        
+        @RequestMapping(value="/selecao/novoFuncionario", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE,produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public @ResponseBody ResponseModel criaFuncionario(@RequestBody Candidato cand,@RequestBody Cargo cargo){
+                LocalDate data = LocalDate.now();
+                Funcionario fun = new Funcionario(null, cargo, data.toString(), cand);
+		try {
+ 
+			this.gerenteFuncionario.addFuncionario(fun);
+ 
+			return new ResponseModel(1,"Registro salvo com sucesso!");
+ 
+		}catch(Exception e) {
+ 
+			return new ResponseModel(0,e.getMessage());			
+		}
+	}
 }

@@ -54,7 +54,9 @@ public class Funcionario  implements Serializable{
         @ManyToOne
         @JoinColumn(name="treinamento_id")
         private Treinamento treinamento;
-
+        
+        @OneToMany(mappedBy="funcionario")
+        private List<Advertencia> advertencias = new ArrayList<>();
 
     public Funcionario() {
     }
@@ -73,14 +75,13 @@ public class Funcionario  implements Serializable{
                 this.cargo = cargo;
 	}
 	
-	/*public List<Advertencia> getAdvertencias() {
+	public List<Advertencia> getAdvertencias() {
 		return advertencias;
 	}
 
-	public void addAdvertencias(Advertencia advertencias) {
-		this.advertencias.add(advertencias);
-	}*/
-
+	public void addAdvertencias(Advertencia advertencia) {
+		this.advertencias.add(advertencia);
+        }
 	public String getDataDaAdmicao() {
 		return dataDaAdmicao;
 	}

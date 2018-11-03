@@ -38,7 +38,7 @@ public class BancoDeTalentosController {
     
      public BancoDeTalentosController(){
     }
-    @RequestMapping(value="/bancoDeTalentos", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE,produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value="/talento", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE,produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public @ResponseBody ResponseModel salvar(@RequestBody BancoDeTalentos talento ){
  
 		try {
@@ -53,14 +53,14 @@ public class BancoDeTalentosController {
 		}
 	}
         
-        @RequestMapping(value = "/BancoDeTalentos", method = RequestMethod.GET)
+        @RequestMapping(value = "/talento", method = RequestMethod.GET)
         
 	public ResponseEntity<List<BancoDeTalentos>> listar() {
 		return new ResponseEntity<List<BancoDeTalentos>>(new ArrayList<BancoDeTalentos>(
 				service.findAll()), HttpStatus.OK);
 	}
      
-	@RequestMapping(value = "/BancoDeTalentos/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/talento/{id}", method = RequestMethod.GET)
        
 	public ResponseEntity<BancoDeTalentos> buscar(@PathVariable("id") Integer id) {
 		BancoDeTalentos talentos = service.getBuscarTalento(id);
@@ -72,7 +72,7 @@ public class BancoDeTalentosController {
 	}
         
         
-        @RequestMapping(value="/BancoDeTalentos", method = RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE)
+        @RequestMapping(value="/talento", method = RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public @ResponseBody ResponseModel atualizar(@RequestBody BancoDeTalentos talentos){
  
 		try {
@@ -87,7 +87,7 @@ public class BancoDeTalentosController {
 		}
 	}
         
-        @RequestMapping(value="/BancoDeTalentos/{id}", method = RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+        @RequestMapping(value="/talento/{id}", method = RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public @ResponseBody ResponseModel excluir(@PathVariable("id") Integer id){
  
 		try {

@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,17 +29,20 @@ public class Advertencia implements Serializable{
         @GeneratedValue(strategy=GenerationType.IDENTITY)
         private Integer id;
         
-        @OneToMany(mappedBy="advertencia")
-        List<Advertencia> advertencia = new ArrayList<Advertencia>();
+        @ManyToOne
+        @JoinColumn(name="funcionario_id")
+        private Funcionario funcionario;
         
 	private String nomeDaAdvertencia;
         private String data;
         private String descricao;
         
-        public Advertencia (Integer id, String nomeDaAdvertencia, String data, String descricao ) {
+        public Advertencia (Integer id, String nomeDaAdvertencia, String data, String descricao ,Funcionario f1) {
             this.id=id;
             this.data=data;
+            this.nomeDaAdvertencia = nomeDaAdvertencia;
             this.descricao=descricao;
+            this.funcionario = f1;
             
         }
         
@@ -67,13 +72,6 @@ public class Advertencia implements Serializable{
             this.descricao=descricao;
         }
         
-    @Autowired
-    private List<Advertencia> advertencias;
-    
-    public void getAddAdvertencia(Advertencia advertencia) {
-        advertencias.add(advertencia);
-    }
-
     @Override
     public int hashCode() {
         return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
